@@ -10,6 +10,9 @@
     <!-- <link rel="stylesheet" href="style.css"> -->
 
     <style>
+        .container {
+            padding-top: 50px;
+        }
     .delete {
         color: #FFF;
         background-color: #f0335c;
@@ -25,10 +28,26 @@
         <div class="row">
             <div class="twelve column">
             <header>
-                <h1>Library</h1>
+                <h1 style="text-align: center;">Library</h1>
+                <p>
+                    <p>
+                        This is my first attempt to do modular javascript following this 
+                        <a href="https://www.youtube.com/watch?v=m-NYyst_tiY&list=PLoYCgNOIyGABs-wDaaxChu82q_xQgUb4f&index=2&t=1s"
+                        target="_blank">Video</a>   <br />
+                        This is a project for
+                        <a href="https://theodinproject.com" target="_blank">The Odin Project</a> in which I
+                        have to make a library using <i>Object Constructors</i> and
+                        <i>LocalStorage</i>. 
+                        You can also view the
+                        <a href="https://github.com/polymahh/Library"
+                        target="_blank">Github repository</a>
+                        of this project.
+                      </p>
+                </p>
             </header>
             </div>
         </div>
+        <hr>
         <div class="row">
             
                 <div class="input">
@@ -44,18 +63,25 @@
                         <label for="pages">Pages</label>
                         <input type="number" name="pages" class="u-full-width" id="pages">
                      </div> 
-                    <div><label for="status">Status</label>
+                    <div>
+                        <label for="status">Status</label>
                         <select id="status" name="status">
                             <option value="READ">Read</option>
                             <option value="NOT READ">Not read</option>
                         </select>
-                    <button id="add" class="button-primary">Add</button>
+                        <button id="add" class="button-primary u-pull-right">Add</button>
+                    </div>
+                    
                 </div>
             
         </div>
+        <hr>
         <div class="row books-container">
           
         </div>
+        <p>
+            inspired from <a href="https://github.com/ginnerzapata/library-app" target="_blank">ginnerzapata</a>
+        </p>
     </div>
 
     <script src="script.js"></script>
