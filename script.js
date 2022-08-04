@@ -107,7 +107,7 @@ let library = {
   showBook (num) {
      
     let sub = document.createElement('div')
-    sub.classList.add('book','six','columns','u-full-width')
+    sub.classList.add('book'/*,'six','columns','u-full-width'*/)
     library.container.appendChild(sub);
 
     let divTitle = document.createElement('div');
@@ -117,6 +117,7 @@ let library = {
     let divPages = document.createElement('div');
     divPages.textContent = "Pages: " + num.pages;
 
+    let btns = document.createElement('div');
     let  stateButton = document.createElement('button');
     stateButton.classList.add('state')
     stateButton.setAttribute('id',num.title)
@@ -125,12 +126,14 @@ let library = {
     del.classList.add('delete')
     del.setAttribute('id',num.title)
     del.textContent = 'Delete';
+    btns.appendChild(stateButton)
+    btns.appendChild(del);
+
 
     sub.appendChild(divTitle);
     sub.appendChild(divAuthor);
     sub.appendChild(divPages);
-    sub.appendChild(stateButton)
-    sub.appendChild(del);
+    sub.appendChild(btns);
 
   
   },
