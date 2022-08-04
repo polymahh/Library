@@ -41,6 +41,7 @@ let library = {
     this.pages = document.querySelector('#pages');
     this.status = document.querySelector('#status');
     this.addButton = document.querySelector('#add');
+    this.form = document.getElementById('form')
   
   },
   render () {
@@ -50,7 +51,13 @@ let library = {
   } ,
 
   bindEvents(){
-    this.addButton.addEventListener('click' , this.addBookToLibrary.bind(this));
+    // this.addButton.addEventListener('click' , this.addBookToLibrary.bind(this));
+    this.form.addEventListener('submit' , () =>{
+      if(this.form.reportValidity()){
+        this.addBookToLibrary()
+      }
+      
+    })
     this.container.addEventListener('click',(e) => {
       if (e.target.classList == 'delete'){
         this.delete(e);
@@ -58,13 +65,22 @@ let library = {
         this.switchState(e);
       }else return ;
     })
+    // form validation
+    this.author.addEventListener("input", () => {
+      this.author.setCustomValidity('');
+      this.author.checkValidity();
+    })
+    this.author.addEventListener('invalid', () => {
+      if(this.author.value === '') {
+        this.author.setCustomValidity('Enter a Name!');
+      } else {
+        this.author.setCustomValidity('author name can only contain upper and lowercase letters. Try again!');
+      }
+    });
   },
 
   addBookToLibrary(){
-    if (this.title.value == '' || this.author.value == '' || this.pages.value == ''){
-      alert("Book Fields Can't be empty");
-      return;
-    }
+    
     let book = new Book (this.title.value,this.author.value,this.pages.value, this.status.value);
     console.log(book)
     this.myLibrary.push(book);
@@ -91,7 +107,7 @@ let library = {
   showBook (num) {
      
     let sub = document.createElement('div')
-    sub.classList.add('book','six','columns','u-full-width')
+    sub.classList.add('book'/*,'six','columns','u-full-width'*/)
     library.container.appendChild(sub);
 
     let divTitle = document.createElement('div');
@@ -101,6 +117,7 @@ let library = {
     let divPages = document.createElement('div');
     divPages.textContent = "Pages: " + num.pages;
 
+    let btns = document.createElement('div');
     let  stateButton = document.createElement('button');
     stateButton.classList.add('state')
     stateButton.setAttribute('id',num.title)
@@ -109,12 +126,14 @@ let library = {
     del.classList.add('delete')
     del.setAttribute('id',num.title)
     del.textContent = 'Delete';
+    btns.appendChild(stateButton)
+    btns.appendChild(del);
+
 
     sub.appendChild(divTitle);
     sub.appendChild(divAuthor);
     sub.appendChild(divPages);
-    sub.appendChild(stateButton)
-    sub.appendChild(del);
+    sub.appendChild(btns);
 
   
   },
